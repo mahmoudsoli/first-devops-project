@@ -20,3 +20,21 @@ This project automates **Flask application deployment** using **Docker, Ansible,
 git clone https://github.com/mahmoudsoli/first-devops-project.git
 cd first-devops-project
 
+### 🏗️ 2. Build & Run the Docker Container**  
+docker build -t flaskapp .  
+docker run -d -p 5000:5000 flaskapp  
+
+### 🌍 3. Verify the Deployment**  
+Visit http://localhost:5000 in your browser.
+---
+
+## 🔧 Tools & Technologies**  
+🐍 Flask - Python web framework.
+🐳 Docker - Containerization platform.
+⚙️ Ansible - Automation tool for deployment.
+☁️ AWS EC2 - Cloud hosting for scalability.
+---
+
+## 📜 License**  
+This project is open-source and available under the MIT License.
+
