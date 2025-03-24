@@ -1,4 +1,3 @@
-# first-devops-project
 # **First DevOps Project** 🚀  
 
 This project automates **Flask application deployment** using **Docker, Ansible, and AWS EC2**.
