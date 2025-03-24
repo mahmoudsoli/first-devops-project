@@ -1,0 +1,61 @@
+---
+- name: Install Docker and Deploy Container
+  hosts: target
+  become: yes
+  tasks:
+  - name: Install required packages
+    yum:
+      name:
+      - yum-utils
+      - device-mapper-persistent-data
+      - lvm2
+      state: present
+
+  - name: Add Docker repository
+    command: dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
+    args:
+      creates: /etc/yum.repos.d/docker-ce.repo
+
+  - name: Install Docker
+    yum:
+      name: docker-ce
+      state: present
+
+  - name: Start and enable Docker service
+    systemd:
+      name: docker
+      state: started
+      enabled: yes
+
+  - name: Add ansible user to docker group
+    user:
+      name: ansible
+      groups: docker
+      append: yes
+
+  - name: Pull the Docker image
+    docker_image:
+      name: msoliman427/flask-app:latest
+      source: pull
+
+  - name: Run the Docker container
+    docker_container:
+      name: my-web-app
+      image: msoliman427/flask-app:latest
+      state: started
+      restart_policy: always
+      ports:
+      - "80:8000"
+
+  - name: Ensure firewalld is allowing HTTP traffic on port 8080
+    firewalld:
+      port: 80/tcp
+      permanent: yes
+      state: enabled
+    notify: Restart firewalld
+
+  handlers:
+  - name: Restart firewalld
+    systemd:
+      name: firewalld
+      state: restarted
