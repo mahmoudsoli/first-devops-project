@@ -25,6 +25,7 @@ docker run -d -p 5000:5000 flaskapp
 
 ### 🌍 3. Verify the Deployment**  
 Visit http://localhost:5000 in your browser.
+
 ---
 
 ## 🔧 Tools & Technologies**  
@@ -32,6 +33,7 @@ Visit http://localhost:5000 in your browser.
 🐳 Docker - Containerization platform.
 ⚙️ Ansible - Automation tool for deployment.
 ☁️ AWS EC2 - Cloud hosting for scalability.
+
 ---
 
 ## 📜 License**  
